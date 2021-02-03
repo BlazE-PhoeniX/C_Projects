@@ -9,3 +9,8 @@ worthless_calender
 tic_tac_toe
 
     Simple multiplayer X-O game based on console. (No Bot is included though)
+    
+    
+MineSweeper
+
+    Simple minesweeper game based on console.
