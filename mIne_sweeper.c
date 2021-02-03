@@ -10,7 +10,7 @@ struct Tile {
 
 struct Board {
     int size;
-    struct Tile tile[10][10];
+    struct Tile tile[20][20];
     int noOfBombs;
     int totalOpened;
     int gameOver;
@@ -84,7 +84,11 @@ void printDivider(char separator, int size) {
 void printColumnName(int size) {
     printf("   ");
     for(int i=1; i<=size; i++) {
-        printf("  %d ", i);
+        if(i<10) {
+            printf("  %d ", i);
+        } else {
+            printf(" %d ", i);
+        }
     }
     printf(" \n");
 }
@@ -122,23 +126,18 @@ void printInputError() {
 }
 
 int getBoardSize() {
-    int boardSizes[3] = { 6, 8, 10 };
-    int choice;
+    int size;
     char extra[10];
 
     printTitle();
-    printf("Board Size:\n");
-    printf("1. Small ( 6 X 6 )\n");
-    printf("2. Medium ( 8 X 8 )\n");
-    printf("3. Large ( 10 X 10 )\n\n");
 
     while(1) {
-        printf("Enter your choice: ");
-        scanf("%d", &choice);
+        printf("Enter Board Size (8 - 20): ");
+        scanf("%d", &size);
         fgets(extra, 10, stdin);
 
-        if(choice>0 && choice<4) {
-            return  boardSizes[choice-1];
+        if(size>7 && size<21) {
+            return  size;
         } else {
             printInputError();
         }
@@ -166,10 +165,10 @@ void getInput(int input[2], int size) {
 
         if(isNumber(inputStr[1]) && isUppercase(inputStr[0]) || isLowercase(inputStr[0])) {
             input[0] = isUppercase(inputStr[0]) ? inputStr[0] - 65 : inputStr[0]-97; 
-            input[1] = inputStr[1]-48-1;
+            input[1] = (inputStr[1]-48) - 1;
 
-            if(size==10 && inputStr[1]=='1' && inputStr[2]=='0') {
-                input[1] = 9;
+            if(size > 9 &&  isNumber(inputStr[2])) {
+                input[1] = (inputStr[1]-48) * 10 + (inputStr[2]-48) - 1;
             }
 
             if(checkValidTile(input[0], input[1], size)) {
