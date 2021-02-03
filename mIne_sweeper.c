@@ -118,11 +118,11 @@ void printBoard(struct Board* board) {
         printf("|\n");
         printDivider('|', board->size);
     }
-    printf("\n");
+    printf("\n\n");
 }
 
 void printInputError() {
-    printf("Invalid input, Try again.\n\n");
+    printf("    Invalid input, Try again.\n\n");
 }
 
 int getBoardSize() {
@@ -132,7 +132,7 @@ int getBoardSize() {
     printTitle();
 
     while(1) {
-        printf("Enter Board Size (8 - 20): ");
+        printf(">>> Enter Board Size (8 - 20): ");
         scanf("%d", &size);
         fgets(extra, 10, stdin);
 
@@ -160,7 +160,7 @@ void getInput(int input[2], int size) {
     char inputStr[10];
 
     while(1) {
-        printf("Enter the tile no ( eg. A1, C4 ) : ");
+        printf(">>> Enter the tile no ( eg. A1, C4 ) : ");
         scanf("%s", inputStr);
 
         if(isNumber(inputStr[1]) && isUppercase(inputStr[0]) || isLowercase(inputStr[0])) {
