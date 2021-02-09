@@ -4,7 +4,7 @@
 
 struct Board {
     int size;
-    int squares[4][4];
+    int squares[10][10];
     int gameOver;
     int blankRow;
     int blankCol;
